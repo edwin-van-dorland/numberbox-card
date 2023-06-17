@@ -1,6 +1,6 @@
 ((LitElement) => {
 
-console.info('NUMBERBOX_CARD_MODIFIED 4.9.1');
+console.info('NUMBERBOX_CARD_MODIFIED 4.9.2');
 const html = LitElement.prototype.html;
 const css = LitElement.prototype.css;
 class NumberBox extends LitElement {
@@ -209,12 +209,19 @@ niceNum(){
 			v=Number(this.config.initial);
 			if(isNaN(v)){return this.config.initial;}
 		}
-	}	
-	let stp=Number(this.config.step) || 1;
+	}
+
+	/* MODFIED */
+	let m=this.config.multiply;
+	if(isNaN(m)){ m=1;}
+	let stp=this.config.step;
+	if(isNaN(stp)) { stp=m; } else { stp=Number(this.config.step*m); }	
+	
 	if( Math.round(stp) != stp ){
-		fix=stp.toString().split(".")[1].length || 1; stp=fix;
-	}else{ stp=fix; }
-	fix = v.toFixed(fix);
+		stp=stp.toString().split(".")[1].length || 0;
+	}else{ stp=0; }
+	fix = v.toFixed(stp)*m;
+	/* /MODIFIED */
 	const u=this.config.unit;
 	if( u=="time" || u=="timehm"){
 		let t = this.numTime(fix,0,u);
@@ -222,15 +229,6 @@ niceNum(){
 	}
 	
 	if(isNaN(Number(fix))){return fix;}
-
-	/* MODFIED */
-	const m=this.config.multiply;
-	if(!isNaN(m))
-	{
-		fix=fix*m;
-		stp=stp*m;
-	}
-	/* /MODIFIED */
 	
 	const lang={language:this._hass.language, comma_decimal:['en-US','en'], decimal_comma:['de','es','it'], space_comma:['fr','sv','cs'], system:undefined};
 	let g=this._hass.locale.number_format || 'language';
