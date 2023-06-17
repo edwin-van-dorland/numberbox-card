@@ -567,6 +567,14 @@ render() {
 		type="number"
 		step="any"
 	></ha-textfield>
+	<ha-textfield
+		label="multiply"
+		.value="${(this.config.multiply!==undefined)?this.config.multiply:''}"
+		.configValue="${'multiply'}"
+		@input="${this.updVal}"
+		type="number"
+		step="any"
+	></ha-textfield>
 </div>
 <div class="side">
 	<ha-entity-picker
