@@ -1,8 +1,12 @@
 # numberbox-card modified
 
 NumberBox for input sliders and number entities
+
 Forked from [numberbox-card]/(https://github.com/htmltiger/numberbox-card)
+
 Inspired from [simple thermostat](https://github.com/nervetattoo/simple-thermostat)
+
+Optional multiply factor is added for the value that is shown to user. For example Sonos works with decimal fractions from 0.01 to 1.00 for the volume level. It represents the percentage. The number-card shows this figure to the user. A multiply factor of 100 show nicely 6 to the user instead of the internal Sonos volume level of 0.06.
 
 ## Installation
 
