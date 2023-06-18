@@ -1,6 +1,6 @@
 ((LitElement) => {
 
-console.info('NUMBERBOX_CARD_MODIFIED 4.9.3');
+console.info('NUMBERBOX_CARD_MODIFIED');
 const html = LitElement.prototype.html;
 const css = LitElement.prototype.css;
 class NumberBox extends LitElement {
@@ -222,6 +222,7 @@ niceNum(){
 	}else{ stp=0; }
 	fix = (v*m).toFixed(stp);
 	/* /MODIFIED */
+	
 	const u=this.config.unit;
 	if( u=="time" || u=="timehm"){
 		let t = this.numTime(fix,0,u);
